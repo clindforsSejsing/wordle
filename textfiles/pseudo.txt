@@ -1,0 +1,16 @@
+Make a game of wordle. 
+
+1. Algorithm with the rules of the game. 
+- The game chooses a word (of a list)
+- The user guess what word it is by writing an input of the suggested word
+-If the word is correct- the user wins. Otherwise the game gets feedback of what was correct, right placement etc. 
+-The user gets to guess again until the word is correct.
+
+Make two or moore tests to see that it works. Also make comments/documentation. 
+
+Algoritm A: 
+-defines the rules
+- gives the user feedback
+
+Algoritm B:
+-How the game chooses words
