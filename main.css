@@ -1,0 +1,86 @@
+h1 {
+  text-align: center;
+}
+
+#keyboard-cont {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#keyboard-cont div {
+  display: flex;
+}
+
+.second-row {
+  margin: 0.5rem 0;
+}
+
+.keyboard-button {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  margin: 0 5px;
+  cursor: pointer;
+  /* text-transform: uppercase; */
+}
+#gameBox {
+  display: flex;
+  align-items: right;
+  flex-direction: row;
+}
+#firstInput {
+  margin-left: 38%;
+}
+#firstInput div {
+  border: 2px solid gray;
+  border-radius: 3px;
+  margin: 2px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  align-items: left;
+  text-transform: uppercase;
+}
+#secondInput {
+  margin-left: -17.5rem;
+}
+#secondInput div {
+  border: 2px solid gray;
+  border-radius: 3px;
+  margin: 2px;
+  margin-top: 4rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  flex-direction: row;
+  float: left;
+  align-items: right;
+  justify-content: center;
+  text-transform: uppercase;
+}
+/* #inputBoxes {
+  border: 2px solid gray;
+  border-radius: 3px;
+  margin: 2px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  align-items: left;
+  text-transform: uppercase;
+} */

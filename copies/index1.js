@@ -4,45 +4,26 @@ const fiveGuesses = 6;
 let guessesLeft = fiveGuesses;
 let currentGuess = [];
 let nextLetter = 0;
-let firstCardBoxes = document.getElementById("firstInput");
-//randomised word from word-list in word.js. 
 
+//randomised word from word-list in word.js. 
 let rightGuessString = wordsArray[Math.floor(Math.random() * wordsArray.length)]
 console.log(rightGuessString)
-
-
-makeBoxes();
-
-function makeBoxes() {
-
-    console.log(firstCardBoxes);
-    let rightGuess = rightGuessString.length;
-
-    for (let i = 0; i < rightGuess; i++) {
-        let createNewBox = document.createElement('div');
-        createNewBox.setAttribute('id', i);
-        createNewBox.setAttribute('class', 'box');
-        firstCardBoxes.append(createNewBox);
-    }
-}
-
-let boxOne = document.getElementById('0');
-let boxTwo = document.getElementById('1');
-let boxThree = document.getElementById('2');
-let boxFour = document.getElementById('3');
-let boxFive = document.getElementById('4');
 
 //make btn clickable
 
 const btnChoices = document.querySelectorAll('button');
 
+let boxOne = document.getElementById('boxOne');
+const boxTwo = document.getElementById('boxTwo');
+const boxThree = document.getElementById('boxThree');
+const boxFour = document.getElementById('boxFour');
+const boxFive = document.getElementById('boxFive');
 
 
 //fill each box with a letter
 btnChoices.forEach(button => button.addEventListener("click", (event) => {
-    //     console.log(event.target.innerHTML);
+    console.log(event.target.innerHTML);
     let input = event.target.innerHTML;
-    let boxChosen = [];
 
     //control so that del and enter is not shown as regular btns
     if (input.length < 2) {
@@ -54,10 +35,10 @@ btnChoices.forEach(button => button.addEventListener("click", (event) => {
             return boxOne.innerHTML = userChoice;
         }
         if (boxTwo.innerHTML == "") {
-            let userChoice = event.target.innerHTML;
+            let userChoiceTwo = event.target.innerHTML;
             guessesLeft--;
-            currentGuess.push(boxTwo.innerHTML = userChoice);
-            return boxTwo.innerHTML = userChoice;
+            currentGuess.push(boxTwo.innerHTML = userChoiceTwo);
+            return boxTwo.innerHTML = userChoiceTwo;
         }
         if (boxThree.innerHTML == "") {
             let userChoiceThree = event.target.innerHTML;
@@ -126,7 +107,7 @@ btnChoices.forEach(button => button.addEventListener("click", (event) => {
     if (input == "Enter" && rightGuessString == currentGuess.toString().toString().replaceAll(",", "")) {
         alert('ok');
         let allCorrect = true;
-        for (let l = 0; l < 4; l++) {
+        for (var l = 0; l < 4; l++) {
             if (currentGuess[l] == rightGuessString[l]) {
 
             }
@@ -140,6 +121,7 @@ btnChoices.forEach(button => button.addEventListener("click", (event) => {
 }
 ));
 
+//make a function that checks if the whole array of currentguess matches the index in wordsArray.
 
 
 
