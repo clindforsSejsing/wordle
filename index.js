@@ -2,31 +2,25 @@ import { wordsArray } from "./word.js";
 
 const fiveGuesses = 6;
 let guessesLeft = fiveGuesses;
-const currentGuess = [];
+let currentGuess = [];
 const lettersChosen = [];
 const list = document.getElementById("wrongWords");
 const firstCardBoxes = document.getElementById("firstInput");
+const winnings = document.getElementById("secondInput");
+let wins = 0;
+let guesses = 0;
+let nmbWins = document.createElement('p');
+nmbWins.setAttribute('id', 'result');
+winnings.append(nmbWins);
+
 
 
 //randomised word from word-list in word.js. 
+let rightGuessString = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+console.log(rightGuessString);
 
-let rightGuessString = wordsArray[Math.floor(Math.random() * wordsArray.length)]
-console.log(rightGuessString)
 
 makeBoxes();
-
-function makeBoxes() {
-
-    console.log(firstCardBoxes);
-    let rightGuess = rightGuessString.length;
-
-    for (let i = 0; i < rightGuess; i++) {
-        let createNewBox = document.createElement('div');
-        createNewBox.setAttribute('id', i);
-        createNewBox.setAttribute('class', 'box');
-        firstCardBoxes.append(createNewBox);
-    }
-}
 
 let boxOne = document.getElementById('0');
 let boxTwo = document.getElementById('1');
@@ -35,7 +29,6 @@ let boxFour = document.getElementById('3');
 let boxFive = document.getElementById('4');
 
 //make btn clickable
-
 const btnChoices = document.querySelectorAll('button');
 
 
@@ -125,47 +118,83 @@ btnChoices.forEach(button => button.addEventListener("click", (event) => {
         }
     }
 
-    // alert("input: " + input + " rightGuessString " + rightGuessString + " currentGuess " + currentGuess.toString().replaceAll(",", ""));
     if (input == "Enter" && currentGuess.length < 5) {
         alert('Du behöver fler bokstäver');
         return false;
     }
-    if (input == "Enter" && rightGuessString == currentGuess.toString().toString().replaceAll(",", "")) {
+    if (input == "Enter" && (rightGuessString == currentGuess.toString().replaceAll(",", ""))) {
         alert('Du vann! Ordet var rätt.');
-        let allCorrect = true;
-        boxInput = "";
-
-        // for (let l = 0; l < rightGuessString.length; l++) {
-        //     if (currentGuess[l] == rightGuessString[l]) {
-        //     }
-        //     else {
-        //         console.log('Pröva igen!');
-        //         allCorrect = false;
-        //     }
-
-
-        // }
+        wins++;
+        guesses = 0;
+        clearAll();
+        currentGuess.splice(-5);
+        lettersChosen.splice(-25);
+        let newWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+        rightGuessString = newWord;
+        list.innerHTML = "";
+        nmbWins.innerHTML = 'Antal Vinster: ' + wins;
+        listOfLetters.innerHTML = "";
+        console.log(newWord);
+        return true;
     } else {
         alert('Pröva igen!');
-        // console.log(currentGuess);
-        // wrongGuesses();
-        lettersChosen.push(currentGuess.toString().toString().replaceAll(",", ""));
-        console.log(lettersChosen);
+
+        clearAll();
+        lettersChosen.push(currentGuess.toString().replaceAll(",", ""));
         list.innerHTML = lettersChosen;
+        currentGuess.splice(-5);
+        console.log(lettersChosen);
 
+        const listOfLetters = document.getElementById("listOfLetters");
+        let result = document.createElement('li');
+        listOfLetters.append(result);
 
+        //controls to see if letter is correct and at correct spot
+        for (let c = 0; c < 5; c++) {
+            if (lettersChosen[guesses][c] == rightGuessString[c]) {
+                result.innerHTML += (lettersChosen[guesses][c] + " " + ' letter is in place||');
 
+            } else {
+                let letterFound = false;
+                for (let i = 0; i < rightGuessString.length; i++) {
+                    if (lettersChosen[guesses][c] == rightGuessString[i]) {
+                        result.innerText += (lettersChosen[guesses][c] + ' letter is misplaced||');
+                        letterFound = true;
+                        break;
+                    }
+                }
 
+                if (!letterFound) {
+                    result.innerText += (lettersChosen[guesses][c] + ' letter is incorrect||');
+                    //listOfLetters.appendChild(wrongLetter);
+                }
+            }
+
+        }
+        listOfLetters.appendChild(result);
+        guesses++;
     }
 
-    //forts att kontrollera om bokstäverna finns med, om de ärpå rätt plats, om de inte finns med- gråmarkera i tangentbordet. 
-
-    //skriva test
-
-    //om tid finns; algoritm b i nytt dokument. 
-
+}));
+function clearAll() {
+    boxOne.innerText = "";
+    boxTwo.innerText = "";
+    boxThree.innerText = "";
+    boxFour.innerText = "";
+    boxFive.innerText = "";
 }
-));
+function makeBoxes() {
+
+    console.log(firstCardBoxes);
+    let rightGuess = rightGuessString.length;
+
+    for (let i = 0; i < rightGuess; i++) {
+        let createNewBox = document.createElement('div');
+        createNewBox.setAttribute('id', i);
+        createNewBox.setAttribute('class', 'box');
+        firstCardBoxes.append(createNewBox);
+    }
+}
 
 
 
