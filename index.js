@@ -2,14 +2,16 @@ import { wordsArray } from "./word.js";
 
 const fiveGuesses = 6;
 let guessesLeft = fiveGuesses;
-let currentGuess = [];
-let nextLetter = 0;
-let firstCardBoxes = document.getElementById("firstInput");
+const currentGuess = [];
+const lettersChosen = [];
+const list = document.getElementById("wrongWords");
+const firstCardBoxes = document.getElementById("firstInput");
+
+
 //randomised word from word-list in word.js. 
 
 let rightGuessString = wordsArray[Math.floor(Math.random() * wordsArray.length)]
 console.log(rightGuessString)
-
 
 makeBoxes();
 
@@ -42,7 +44,7 @@ const btnChoices = document.querySelectorAll('button');
 btnChoices.forEach(button => button.addEventListener("click", (event) => {
     //     console.log(event.target.innerHTML);
     let input = event.target.innerHTML;
-    let boxChosen = [];
+
 
     //control so that del and enter is not shown as regular btns
     if (input.length < 2) {
@@ -122,21 +124,46 @@ btnChoices.forEach(button => button.addEventListener("click", (event) => {
 
         }
     }
-    alert("input: " + input + " rightGuessString " + rightGuessString + " currentGuess " + currentGuess.toString().replaceAll(",", ""));
-    if (input == "Enter" && rightGuessString == currentGuess.toString().toString().replaceAll(",", "")) {
-        alert('ok');
-        let allCorrect = true;
-        for (let l = 0; l < 4; l++) {
-            if (currentGuess[l] == rightGuessString[l]) {
 
-            }
-            else {
-                allCorrect = false;
-            }
-        }
-
-        //what happens when u push enter? 
+    // alert("input: " + input + " rightGuessString " + rightGuessString + " currentGuess " + currentGuess.toString().replaceAll(",", ""));
+    if (input == "Enter" && currentGuess.length < 5) {
+        alert('Du behöver fler bokstäver');
+        return false;
     }
+    if (input == "Enter" && rightGuessString == currentGuess.toString().toString().replaceAll(",", "")) {
+        alert('Du vann! Ordet var rätt.');
+        let allCorrect = true;
+        boxInput = "";
+
+        // for (let l = 0; l < rightGuessString.length; l++) {
+        //     if (currentGuess[l] == rightGuessString[l]) {
+        //     }
+        //     else {
+        //         console.log('Pröva igen!');
+        //         allCorrect = false;
+        //     }
+
+
+        // }
+    } else {
+        alert('Pröva igen!');
+        // console.log(currentGuess);
+        // wrongGuesses();
+        lettersChosen.push(currentGuess.toString().toString().replaceAll(",", ""));
+        console.log(lettersChosen);
+        list.innerHTML = lettersChosen;
+
+
+
+
+    }
+
+    //forts att kontrollera om bokstäverna finns med, om de ärpå rätt plats, om de inte finns med- gråmarkera i tangentbordet. 
+
+    //skriva test
+
+    //om tid finns; algoritm b i nytt dokument. 
+
 }
 ));
 
