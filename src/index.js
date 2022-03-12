@@ -1,4 +1,4 @@
-import { wordsArray } from "../wordList.js";
+import { wordsArray } from "./wordList.js";
 import { compareWords } from "./compareWords.js";
 import { getSecretWord } from "./filterRandomWords.js";
 
