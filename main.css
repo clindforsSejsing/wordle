@@ -31,7 +31,7 @@ h1 {
   flex-direction: row;
 }
 #firstInput {
-  margin-left: 38%;
+  margin-left: 20em;
 }
 #firstInput div {
   border: 2px solid gray;
