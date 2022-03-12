@@ -4,11 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="a wordgame reminding of wordle" />
     <link rel="stylesheet" href="main.css" />
     <title>a wordgame</title>
   </head>
   <body>
     <h1>Wordgame</h1>
+    <input type="radio" id="allwords" name="words" value="" />
+    <label for="allwords">Randomiserat val.</label>
+    <input type="radio" id="fourletterword" name="words" value="" />
+    <label for="fourletterword">Fyra Bokstäver</label>
+    <input type="radio" id="fiveletterword" name="words" value="" />
+    <label for="fiveletterword">Fem Bokstäver</label>
+    <input type="radio" id="sixletterword" name="words" value="" />
+    <label for="sixletterword">Sex Bokstäver</label>
+    <input type="radio" id="sevenletterword" name="words" value="" />
+    <label for="sevenletterword">Sju Bokstäver</label>
+    <input type="button" value="Ladda nytt ord" id="refreshButton" />
     <div id="gameBox">
       <div id="firstInput"></div>
       <div id="secondInput"></div>
@@ -52,7 +64,7 @@
         <button class="keyboard-button">Enter</button>
       </div>
     </div>
-    <h4 id="wrongWords"></h4>
+    <h2 id="wrongWords"></h2>
     <ul id="listOfLetters"></ul>
     <script type="module" src="index.js"></script>
   </body>

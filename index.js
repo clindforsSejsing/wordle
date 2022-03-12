@@ -1,5 +1,9 @@
-import { wordsArray } from "./word.js";
+import { wordsArray } from "./wordList.js";
 import { compareWords } from "./compareWords.js";
+import { getSecretWord } from "./filterRandomWords.js";
+
+
+document.getElementById("refreshButton").addEventListener("click", refresh);
 
 let currentGuess = [];
 const list = document.getElementById("wrongWords");
@@ -11,13 +15,15 @@ let nmbWins = document.createElement("p");
 nmbWins.setAttribute("id", "result");
 winnings.append(nmbWins);
 
+makeBoxes();
+
 //randomised word from word-list in word.js.
-let rightGuessString =
-    wordsArray[Math.floor(Math.random() * wordsArray.length)];
+let rightGuessString = getSecretWord(wordsArray, nrOfLetters());
+
 let guessesLeft = rightGuessString.length;
 console.log(rightGuessString);
 
-makeBoxes();
+showNrOfBoxes(guessesLeft);
 
 //make btn clickable
 const btnChoices = document.querySelectorAll("button");
@@ -42,7 +48,7 @@ btnChoices.forEach((button) =>
         //check to be able to delete with btn Del
 
         if (input == "Del") {
-            for (let b = 0; b < currentGuess.length; b++) {
+            for (let b = currentGuess.length - 1; b >= 0; b--) {
                 let currentBox = document.getElementById(b);
                 let removed = currentGuess.pop();
                 if (currentBox.innerHTML != "") {
@@ -56,23 +62,25 @@ btnChoices.forEach((button) =>
 
         //checks to see if input is correct
         const currentGuessString = currentGuess.toString().replaceAll(",", "");
-        if (input == "Enter" && currentGuess.length < 5) {
+        if (input == "Enter" && currentGuess.length < rightGuessString.length) {
             alert("Du behöver fler bokstäver");
-            return false;
+
         }
         if (input == "Enter" && rightGuessString == currentGuessString) {
             alert("Du vann! Ordet var rätt.");
             wins++;
             guesses = 0;
             clearAll();
-            currentGuess.splice(-5);
-            let newWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+            currentGuess.splice(currentGuess.length * -1);
+
+            let newWord = getSecretWord(wordsArray, nrOfLetters());
             rightGuessString = newWord;
+            showNrOfBoxes(rightGuessString.length);
             list.innerHTML = "";
             nmbWins.innerHTML = "Antal Vinster: " + wins;
             listOfLetters.innerHTML = "";
             console.log(newWord);
-            return true;
+
         } else {
             alert("Pröva igen!");
             clearAll();
@@ -83,7 +91,7 @@ btnChoices.forEach((button) =>
             listOfLetters.append(result);
 
             let guessResult = compareWords(currentGuessString, rightGuessString);
-            // console.log(currentGuessString, rightGuessString);
+
 
             //set color to the letters
             for (let gr = 0; gr < rightGuessString.length; gr++) {
@@ -102,7 +110,7 @@ btnChoices.forEach((button) =>
 
             listOfLetters.appendChild(result);
             guesses++;
-            currentGuess.splice(-5);
+            currentGuess.splice(currentGuess.length * -1);
         }
     })
 );
@@ -113,16 +121,65 @@ function clearAll() {
     }
 }
 function makeBoxes() {
-    let rightGuess = rightGuessString.length;
 
-    for (let i = 0; i < rightGuess; i++) {
+    for (let i = 0; i < 7; i++) {
         let createNewBox = document.createElement("div");
         createNewBox.setAttribute("id", i);
         createNewBox.setAttribute("class", "box");
         firstCardBoxes.append(createNewBox);
+        createNewBox.style.visibility = "hidden";
     }
 }
 
-// console.log(wordsArray);
-// console.log(wordsArray.length);
-// console.log(wordsArray[10]);
+function showNrOfBoxes(nr) {
+
+    for (let s = 0; s < nr; s++) {
+        let box = document.getElementById(s);
+        box.style.visibility = "visible";
+    }
+
+    for (let h = nr; h < 7; h++) {
+        let box = document.getElementById(h);
+        box.style.visibility = "hidden";
+    }
+}
+
+
+
+function nrOfLetters() {
+    const allWords = document.getElementById("allwords");
+    const fourLetters = document.getElementById("fourletterword");
+    const fiveLetters = document.getElementById("fiveletterword");
+    const sixLetters = document.getElementById("sixletterword");
+    const sevenLetters = document.getElementById("sevenletterword");
+
+    if (allWords.checked) {
+        return 0;
+    }
+    else if (fourLetters.checked) {
+        return 4;
+    }
+    else if (fiveLetters.checked) {
+        return 5;
+    }
+    else if (sixLetters.checked) {
+        return 6;
+    }
+    else if (sevenLetters.checked) {
+        return 7;
+    }
+}
+
+function refresh() {
+    guesses = 0;
+    clearAll();
+    currentGuess.splice(currentGuess.length * -1);
+    let newWord = getSecretWord(wordsArray, nrOfLetters());
+    rightGuessString = newWord;
+    showNrOfBoxes(rightGuessString.length);
+    list.innerHTML = "";
+    nmbWins.innerHTML = "Antal Vinster: " + wins;
+    listOfLetters.innerHTML = "";
+    console.log(newWord);
+}
+

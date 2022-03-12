@@ -20,10 +20,9 @@ function compareWords(guess, correctWord) {
         }
     }
 
-    //checks to se if letters are correct
+    //if they are marked as maybemisplaced- check to see if they are misplaced
     for (let c = 0; c < correctWord.length; c++) {
         if (letterArray[c].result != "correct") {
-            //if not, mark them as maybereplaced
             for (let g = 0; g < letterArray.length; g++) {
                 if (letterArray[g].result == "maybemisplaced") {
                     if (letterArray[g].letter == correctWord[c]) {

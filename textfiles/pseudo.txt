@@ -1,29 +1,17 @@
-pseudocode:
 
 //* Make a game of wordle:
-/* 1. The game chose a word from a list and make the user know how many letters the word has. 
-2. The user guesses by writing into an input, a word with the same amount of letters.
+/* 1. The game chose a word from a list and the user is able to choose how many letters the word should have (4-7 letters or just randomised).  
+2. The user guesses by writing letters;with the same amount of letters.
 3. If the word is correct- user wins. 
-4. Word not correct? Then teh game gives feedback: if the letter is correct, if the letter is correct but at the wrong spot in the word, or if the letter is not in the secret word. 
-5. The input with the correct letters (and at the right place) should stay in place when the user gets more chanses to guess the word. 
-6. The guesses have no limits. The user gets a notification when the correct word is guessed. 
+4. Word not correct? Then the game gives feedback: if the letter is correct, if the letter is correct but at the wrong spot in the word, or if the letter is not in the secret word. 
+5. The input with the correct letters (and at the right place) should get the color of green, the letters wich is in wrong place (but is in the word) get the color of blue. The letters that does not fit into the mysteryword get the color of red.  
+6. User gets unlimited chanses to guess the word.
+7. A resultlist tracks the wins for the user. 
+8. If the user finds the word to hard, he/she can just click on "ladda nytt ord" and get a new word.
+
 *///*@author CLS
 
 
 
-Make a game of wordle. (Break down the assignment) 
 
-1. Algorithm with the rules of the game. 
-- The game chooses a word (of a list)
-- The user guess what word it is by writing an input of the suggested word
--If the word is correct- the user wins. Otherwise the game gets feedback of what was correct, right placement etc. 
--The user gets to guess again until the word is correct.
 
-Make two or moore tests to see that it works. Also make comments/documentation. 
-
-Algoritm A: 
--defines the rules
-- gives the user feedback
-
-Algoritm B:
--How the game chooses words

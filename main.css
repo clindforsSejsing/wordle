@@ -26,11 +26,11 @@ h1 {
 }
 #gameBox {
   display: flex;
-  align-items: right;
+  align-items: center;
   flex-direction: row;
 }
 #firstInput {
-  margin-left: 15rem;
+  margin-left: 6em;
 }
 #firstInput div {
   border: 2px solid gray;
@@ -38,13 +38,14 @@ h1 {
   margin: 2px;
   font-size: 2.5rem;
   font-weight: 700;
-  height: 3rem;
-  width: 3rem;
+  height: 1em;
+  width: 1em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   float: left;
 }
 #secondInput {
-  margin-left: -30em;
+  margin-left: 8em;
+  padding: 3em;
 }
