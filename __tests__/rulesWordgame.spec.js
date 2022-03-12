@@ -1,7 +1,7 @@
 /**
 * @jest-environment jsdom
 */
-import { compareWords } from '../compareWords.js';
+import { compareWords } from '../src/compareWords';
 
 
 test('Users guess and the randomised word is the same', () => {

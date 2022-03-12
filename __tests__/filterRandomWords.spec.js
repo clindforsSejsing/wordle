@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 
-import { getSecretWord } from '../filterRandomWords.js';
+import { getSecretWord } from '../src/filterRandomWords';
 
 test('Users clicks to set a randomised word of four letters', () => {
     expect(getSecretWord(["LÅSKOLV", "NYCKEL", "LÅSA", "TRE"], 4)).toBe("LÅSA");
