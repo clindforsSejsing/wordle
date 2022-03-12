@@ -18,12 +18,11 @@ h1 {
 }
 
 .keyboard-button {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  padding: 0.5rem;
+  padding: 0.4rem;
   margin: 0 5px;
   cursor: pointer;
-  /* text-transform: uppercase; */
 }
 #gameBox {
   display: flex;
@@ -31,7 +30,7 @@ h1 {
   flex-direction: row;
 }
 #firstInput {
-  margin-left: 20em;
+  margin-left: 15rem;
 }
 #firstInput div {
   border: 2px solid gray;
@@ -42,12 +41,9 @@ h1 {
   height: 3rem;
   width: 3rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   float: left;
-  align-items: left;
-  text-transform: uppercase;
 }
 #secondInput {
   margin-left: -30em;
